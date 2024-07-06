@@ -1,17 +1,31 @@
-# asks for how many todos user wants to input
-# stores and displays them
+status = True
+tasks = []
 
-prompt = "How many todo: "
-user_text = round(float(input(prompt)))
-print("You want to add", user_text, "tasks.")
-todos = []
+print("Type:\n'add' to add a task.\n'show' to get a list of entered tasks.\n'help' for supported commands.\n'exit' to quit.")
 
-def addtodo():
-    prompt = "Enter a todo: "
-    user_text = input(prompt)
-    todos.append(user_text)
+def addtask():
+    task = input("Enter a task: ")
+    tasks.append(task)
+    print('Task added.')
 
-for i in range(user_text):
-    addtodo()
+def showtasks():
+    print("Showing Tasks...")
+    print("You have added", len(tasks), "tasks.")
+    print("Here are your tasks:")
+    for t in tasks:
+        print("- ", t)
 
-print(todos)
+while status:
+    user_action = input("Enter a command: ")
+    match user_action.lower():
+        case "add":
+            addtask()
+        case "show":
+            showtasks()
+        case "exit":
+            print("Exiting...")
+            status=False
+        case "help":
+            print("Type:\n'add' to add a task.\n'show' to get a list of entered tasks.\n'exit' to quit.")
+        case _:
+            print("Couldn't understand.")
