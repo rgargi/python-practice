@@ -1,7 +1,7 @@
 status = True
 tasks = []
 
-print("Type:\n'add' to add a task.\n'show' to get a list of entered tasks.\n'help' for supported commands.\n'exit' to quit.")
+print("Type add, show, help, exit.")
 
 def addtask():
     task = input("Enter a task: ")
@@ -17,7 +17,7 @@ def showtasks():
 
 while status:
     user_action = input("Enter a command: ")
-    match user_action.lower():
+    match user_action.strip().lower():
         case "add":
             addtask()
         case "show":
@@ -29,3 +29,5 @@ while status:
             print("Type:\n'add' to add a task.\n'show' to get a list of entered tasks.\n'exit' to quit.")
         case _:
             print("Couldn't understand.")
+
+print("Have a good day!")
