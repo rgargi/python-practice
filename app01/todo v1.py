@@ -1,3 +1,5 @@
+# Match Case
+
 status = True
 
 print("Type add(a), show(s), edit(e), complete(c), help(h), exit.")
@@ -59,9 +61,9 @@ def completetask():
     if task_no > len(tasks) or task_no <1:
         print("ERROR: Task with this serial number doesn't exist.")
     else:
-        tasks.pop(task_no-1)
+        x_task = tasks.pop(task_no-1)
         update_file(tasks)
-        print("Task completed!")
+        print(f"'{x_task}' was removed from the tasks list.")
 
 while status:
     user_action = input("Enter a command: ")
