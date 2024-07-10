@@ -9,7 +9,7 @@ result['length'] = False
 if len(password) > 8:
     result['length'] = True
 
-# codndition 2 - must contain digits
+# condition 2 - must contain digits
 result['digits'] = False
 for i in password:
     if i.isdigit():
