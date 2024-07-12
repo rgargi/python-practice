@@ -1,6 +1,4 @@
-# IF-ELIF-ELSE
-
-print("Type add, show, edit, done, help, exit.")
+FILEPATH = r"app01/app_todo/tasks.txt"
 
 # writelines() doesn't add a new line -> so we added one
 # readlines() adds a new line automatically
@@ -10,19 +8,15 @@ print("Type add, show, edit, done, help, exit.")
 # therefore using read() which doesn't add newlines
 # we could also use readlines() and strip the extra "\n"
 
-def get_path():
-    path = r"app01/tasks.txt"
-    return path
-
-def get_tasks(filepath):
-    # print("Populating with tasks...")
+def get_tasks(filepath=FILEPATH):
+    """Get tasks from the the file."""
     with open(filepath, "r") as f:
         tasks_data = f.read().splitlines()
     return tasks_data
 
-# tasks = get_tasks(r"app01/tasks.txt")
-
-def update_file(filepath, tasks_list):
+def update_file(tasks_list, filepath=FILEPATH):
+    """ Update the file with changes. Run after adding a new task, 
+    editing a task, and deleting a completed task."""
     update_done = 0
     try:
         with open(filepath, "w") as f:
@@ -34,12 +28,12 @@ def update_file(filepath, tasks_list):
     return update_done
                                                                               
 def addtask(command):
-    tasks = get_tasks(get_path())
-    # removing add to get the task
+    tasks = get_tasks()
+    # removing 'add' to get the task
     if len(command) > 4:
         task = command[4:]
         tasks.append(task)
-        if update_file(get_path(), tasks) == 1:
+        if update_file(tasks) == 1:
             print('Task added.')
         else:
             print("Task couldn't be added.")
@@ -48,7 +42,7 @@ def addtask(command):
 
 def showtasks():
     print("\nShowing Tasks...")
-    tasks = get_tasks(get_path())
+    tasks = get_tasks()
     print("You have added", len(tasks), "tasks.")
     if len(tasks) != 0:
         print("Here are your tasks:")
@@ -56,7 +50,7 @@ def showtasks():
         print(i+1, "-", task)
 
 def edittask(command):
-    tasks = get_tasks(get_path())
+    tasks = get_tasks()
     try: 
         if len(command) > 5:
             task_no = int(command[5:])
@@ -67,7 +61,7 @@ def edittask(command):
                 print("Selected Task: ", old_task)
                 new_task = input("Enter updated task: ")
                 tasks[task_no-1] = new_task
-                if update_file(get_path(), tasks) == 1:
+                if update_file(tasks) == 1:
                     print("Task updated!")
                 else:
                     print("Task couldn't be updated.")
@@ -77,7 +71,7 @@ def edittask(command):
         print("Only insert a number after 'edit' command.")
 
 def completetask(command):
-    tasks = get_tasks(get_path())
+    tasks = get_tasks()
     try:
         if len(command) > 5:
             task_no = int(command[5:])
@@ -85,30 +79,15 @@ def completetask(command):
                 print("ERROR: Task with this serial number doesn't exist.")
             else:
                 x_task = tasks.pop(task_no-1)
-                update_file(get_path(), tasks)
+                update_file(tasks)
                 print(f"'{x_task}' was removed from the tasks list.")
         else:
             print("Please insert serial number after 'done' command.")
     except ValueError as err:
          print("Only insert a number after 'done' command.")
 
-while True:
-    user_action = input("Enter a command: ")
-    user_action = user_action.strip()
-    if user_action.startswith("add"):
-        addtask(user_action)
-    elif user_action.startswith("show"):
-        showtasks()
-    elif user_action.startswith("edit"):
-        edittask(user_action)
-    elif user_action.startswith("done"):
-        completetask(user_action)
-    elif user_action.startswith("exit"):
-        print("Exiting...")
-        break
-    elif user_action.startswith("help"):
-        print("\nType:\n'add' to add a task.\n'show' to get a list of entered tasks.\n'edit' to edit the task\n'done' or to remove a completed task\n'exit' to quit.")
-    else:
-        print("ERROR: Couldn't understand the command.")
-
-print("Have a good day!")
+print("Loading functions...")
+if __name__ == "__main__":
+    print("Only run when running this file directly")
+    print("Will not run when running this file indirectly from main.py")
+    print(__name__)
