@@ -1,0 +1,6 @@
+[{"question_text": "Which is not a primary color?", 
+                      "alternatives": ["Blue", "Red", "Black", "Yellow"], 
+                      "correct_ans": 3}, 
+                      {"question_text": "Who is the author of Pickwick Papers?", 
+                      "alternatives": ["Jane Austen", "Charles Dickens", "Horace Walpole", "Henry James"], 
+                      "correct_ans": 2}]
