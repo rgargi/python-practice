@@ -1,6 +1,6 @@
 import json
 
-with open("app01/extra/questions.json", "r") as f:
+with open("app01/extra/std_modules/questions.json", "r") as f:
     questions = f.read()
 
 # as the above code returns a string we need 

@@ -2,7 +2,7 @@
 
 import csv
 
-with open("app01/extra/weather.csv", "r") as f:
+with open("app01/extra/std_modules/weather.csv", "r") as f:
     data = list(csv.reader(f))
 
 def get_temp(station):
