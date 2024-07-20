@@ -1,6 +1,6 @@
 # IF-ELIF-ELSE
 
-from modules import functions as fn
+from modules import cli_functions as fn
 
 # standard modules
 import time
