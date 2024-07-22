@@ -27,18 +27,13 @@ def update_file(tasks_list, filepath=FILEPATH):
         print("You entered characters which cannot be encoded.")
     return update_done
                                                                               
-def addtask(command):
+def addtask(task):
     tasks = get_tasks()
-    # removing 'add' to get the task
-    if len(command) > 4:
-        task = command[4:]
-        tasks.append(task)
-        if update_file(tasks) == 1:
-            print('Task added.')
-        else:
-            print("Task couldn't be added.")
+    tasks.append(task)
+    if update_file(tasks) == 1:
+        print('Task added.')
     else:
-        print("Please insert task after 'add' command")
+        print("Task couldn't be added.")
 
 def showtasks():
     print("\nShowing Tasks...")
