@@ -1,13 +1,10 @@
 Acquire a map
 Buy a wand
 Buy an owl
-Buy books
-Play it by the ear
+Buy Books
 Buy Coffee
 Hello World!
-Implement the add button
-Implement the add button
-Implement the edit button
-Implement the edit button
-Hi!
+Play it by the ear
+Buy Notebooks
+Buy a horse
 Hello World!

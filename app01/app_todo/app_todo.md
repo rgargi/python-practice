@@ -6,3 +6,10 @@ The tasks are stored in a text file.
 We have a graphical user interface for the task management app. We are using a python third party library (see pypy.org -> FreeSimpleGUI) to create buttons.
 
 The course suggested FreeSimpleGUI, but I am trying with Tkinter as it is a python standard library.
+
+## Issues
+
+- disable add button while editing list
+x Edit button errors out when no item from list is selected (used try/except)
+x double clicking on the task entry removes all other words (solved by exportselection)
+x double clicking on the task entry focuses on entry box (solved by exportselection)

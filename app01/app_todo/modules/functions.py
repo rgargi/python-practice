@@ -31,58 +31,25 @@ def addtask(task):
     tasks = get_tasks()
     tasks.append(task)
     if update_file(tasks) == 1:
-        print('Task added.')
+        msg = "Task added"
     else:
-        print("Task couldn't be added.")
+        msg = "Task couldn't be added"
+    print(msg)
+    return msg
 
-def showtasks():
-    print("\nShowing Tasks...")
+def edittask(index, edit):
     tasks = get_tasks()
-    print("You have added", len(tasks), "tasks.")
-    if len(tasks) != 0:
-        print("Here are your tasks:")
-    for i,task in enumerate(tasks):
-        print(i+1, "-", task)
+    tasks[index] = edit
+    if update_file(tasks) == 1:
+        msg = "Task updated!"
+    else:
+        msg = "Task couldn't be updated"
+    print(msg)
+    return msg
 
-def edittask(command):
+def completetask(index):
     tasks = get_tasks()
-    try: 
-        if len(command) > 5:
-            task_no = int(command[5:])
-            if task_no > len(tasks) or task_no <1:
-                print("ERROR: Task with this serial number doesn't exist.")
-            else:
-                old_task = tasks[task_no-1]
-                print("Selected Task: ", old_task)
-                new_task = input("Enter updated task: ")
-                tasks[task_no-1] = new_task
-                if update_file(tasks) == 1:
-                    print("Task updated!")
-                else:
-                    print("Task couldn't be updated.")
-        else:
-            print("Please insert serial number after 'edit' command.")
-    except ValueError as err:
-        print("Only insert a number after 'edit' command.")
-
-def completetask(command):
-    tasks = get_tasks()
-    try:
-        if len(command) > 5:
-            task_no = int(command[5:])
-            if task_no > len(tasks) or task_no <1:
-                print("ERROR: Task with this serial number doesn't exist.")
-            else:
-                x_task = tasks.pop(task_no-1)
-                update_file(tasks)
-                print(f"'{x_task}' was removed from the tasks list.")
-        else:
-            print("Please insert serial number after 'done' command.")
-    except ValueError as err:
-         print("Only insert a number after 'done' command.")
-
-print("Loading functions...")
-if __name__ == "__main__":
-    print("Only run when running this file directly")
-    print("Will not run when running this file indirectly from main.py")
-    print(__name__)
+    x_task = tasks.pop(index)
+    update_file(tasks)
+    msg = f"'{x_task}' was removed from the tasks list"
+    return msg
