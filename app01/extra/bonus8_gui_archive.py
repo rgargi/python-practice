@@ -1,4 +1,4 @@
-import time
+from std_modules import std_zipfile as z
 
 from tkinter import *
 from tkinter import ttk
@@ -15,23 +15,29 @@ secondary = '#0083FF'
 white = '#FFFFFF'
 
 def init():
-    now = time.strftime("%b %d, %Y %H:%M")
-    displayMessage.set(f"It is {now}")
-    # print("\nIt is", now)
+    displayMessage.set("Hello!")
 
 def choose_files():
     selectedFiles = filedialog.askopenfilenames()
+    displayMessage.set("Selected files to archive")
     filenames.set(selectedFiles)
 
 def choose_folder():
     selectedFolder = filedialog.askdirectory()
+    displayMessage.set("Selected destination folder")
     foldername.set(selectedFolder)
 
 def archive_files():
-    # displayMessage.set("Compressed Files!")
+    paths = []
+    unedited_paths = filenames.get().strip("()").split(",")
+    for p in unedited_paths:
+        p = p.strip("'").strip(" ").strip("'")
+        paths.append(p)
+    dd = foldername.get()
+    z.create_archive(filepaths=paths, destination_dir=dd)
     displayMessage.set("Archive Created!")
     print("Files Compressed")
-
+    
 # main window
 window = Tk()
 window.title("Compress Files")

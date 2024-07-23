@@ -13,3 +13,8 @@ The course suggested FreeSimpleGUI, but I am trying with Tkinter as it is a pyth
 x Edit button errors out when no item from list is selected (used try/except)
 x double clicking on the task entry removes all other words (solved by exportselection)
 x double clicking on the task entry focuses on entry box (solved by exportselection)
+- add scroll bar
+
+## References
+
+https://tkdocs.com/tutorial/onepage.html
