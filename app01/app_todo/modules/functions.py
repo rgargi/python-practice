@@ -1,4 +1,11 @@
-FILEPATH = r"app01/app_todo/tasks.txt"
+import os
+
+FILEPATH = "tasks.txt"
+
+if not os.path.exists(FILEPATH):
+    with open(FILEPATH, "w") as f:
+        print("File Created")
+        pass
 
 # writelines() doesn't add a new line -> so we added one
 # readlines() adds a new line automatically

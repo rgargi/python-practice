@@ -12,18 +12,22 @@ def refresh_listbox():
     taskList.set(get_list)
 
 def add_task():
+    wd_entry_task.focus()
     new_task = task.get()
     if new_task != "":
         msg = fn.addtask(new_task)
         task.set("")
         refresh_listbox()
-        displayMessage.set(msg)
+    else:
+        msg = "Type something in the box"
+    displayMessage.set(msg)
 
 def show_task(*args):
     selected_task = wd_tasklistbox.selection_get()
     task.set(selected_task)
 
 def edit_task():
+    wd_entry_task.focus()
     try:
         selected_task = wd_tasklistbox.selection_get()
         editted_task = task.get()
@@ -31,6 +35,7 @@ def edit_task():
             index = wd_tasklistbox.curselection()[0]
             msg = fn.edittask(index, editted_task)
             refresh_listbox()
+            task.set("")
         else:
              msg = "You can make changes to the content of the task"
     except TclError as err:
@@ -39,12 +44,16 @@ def edit_task():
     displayMessage.set(msg)
 
 def add_or_edit_task(*args):
+    task_entry = task.get()
     selection = wd_tasklistbox.curselection()
-    # task_box_entry = task.get()
-    if len(selection) == 0:
+    if task_entry == "":
+        msg = "Type something in the box"
+        displayMessage.set(msg)
+    elif len(selection) == 0:
         add_task()
     elif len(selection) == 1:
         edit_task()
+        wd_tasklistbox.selection_clear(0,END)
     else:
          msg = "Woah! What did you press?!"
          displayMessage.set(msg)
@@ -93,13 +102,13 @@ window.rowconfigure(0, weight=1)
 
 # create widgets
 wd_header = ttk.Label(mainframe, text="Type in a task:", font=('Arial 10'))
-wd_entry_task = ttk.Entry(mainframe, width=35, textvariable=task, exportselection=False, font=('Corbel 14 bold')) 
+wd_entry_task = ttk.Entry(mainframe, width=35, textvariable=task, exportselection=False, font=('Inter 14 bold')) 
 bt_add = ttk.Button(mainframe, text="Add", command=add_task)
-wd_tasklistbox = Listbox(mainframe, listvariable=taskList, width=35, font=('Corbel 12'), selectbackground=main_color)
+wd_tasklistbox = Listbox(mainframe, listvariable=taskList, width=35, font=('Inter 12'), selectbackground=main_color)
 wd_taskscroll = ttk.Scrollbar(mainframe, orient=VERTICAL, command=wd_tasklistbox.yview)
 bt_edit = ttk.Button(mainframe, text="Edit", command=edit_task)
 bt_done = ttk.Button(mainframe, text="Clear Task", command=complete_task)
-bt_exit = ttk.Button(mainframe, text="Exit", command=exit)
+bt_exit = ttk.Button(mainframe, text="Exit", command=window.quit)
 wd_msg = ttk.Label(mainframe, textvariable=displayMessage, font=("Arial 10"), foreground=sec_color)
 
 # grid all the widgets
