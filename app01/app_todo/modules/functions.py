@@ -41,7 +41,6 @@ def addtask(task):
         msg = "Task added"
     else:
         msg = "Task couldn't be added"
-    print(msg)
     return msg
 
 def edittask(index, edit):
@@ -58,5 +57,5 @@ def completetask(index):
     tasks = get_tasks()
     x_task = tasks.pop(index)
     update_file(tasks)
-    msg = f"'{x_task}' was removed from the tasks list"
+    msg = f"'{x_task}' was removed"
     return msg

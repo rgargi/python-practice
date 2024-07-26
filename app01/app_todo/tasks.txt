@@ -1,5 +1,4 @@
 Acquire a map
-Travel to the secret market!
 Buy a wand
 Buy Books
 Buy a horse
@@ -8,4 +7,3 @@ Buy an Owl
 Buy Coffee
 Meet with Hagrid
 Make some polyjuice potion
-Play it by the ear

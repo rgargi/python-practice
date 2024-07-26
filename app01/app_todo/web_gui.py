@@ -6,10 +6,25 @@ from modules import functions as fn
 now = time.strftime("%a %d.%m.%Y, %H:%M")
 task_list = fn.get_tasks()
 
+def add_task():
+    new_task = st.session_state['task_entry']
+    if new_task:
+        msg = fn.addtask(new_task)
+        st.toast(msg, icon="➕")
+
 st.title("My Tasks")
 st.subheader(now)
-st.text_input(label="Enter a new task:", label_visibility='collapsed', placeholder="Add new task...")
+
 st.write("All my tasks:")
 
-for task in task_list:
-    st.checkbox(task)
+for i, task in enumerate(task_list):
+    task_key = f'task_{i}'
+    checkbox = st.checkbox(label=task, key=task_key)
+    if checkbox:
+        msg = fn.completetask(i)
+        st.toast(msg, icon="❌")
+        del st.session_state[task_key]
+        time.sleep(0.4)
+        st.rerun()
+
+st.chat_input(placeholder="Add new task...", key='task_entry', on_submit=add_task)
