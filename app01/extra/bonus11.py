@@ -13,9 +13,11 @@ with st.expander("Start Camera"):
     camera_image = st.camera_input("Camera")
 
 def convert_to_grayscale(color_img):
-    # create a pillow image instance
+    """
+    Takes an image input and creates a pillow image instance.
+    Then converts it to grayscale.
+    """
     img = Image.open(color_img)
-    # convert image to grayscale
     gray_img = img.convert("L")
     return gray_img
 
