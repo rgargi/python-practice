@@ -14,7 +14,7 @@ print("Type add(a), show(s), edit(e), complete(c), help(h), exit.")
 
 def addtask_fromfile():
     print("Populating with tasks...")
-    with open(r"app01/extra/todo/tasks.txt", "r") as f:
+    with open(r"tasks.txt", "r") as f:
         tasks = f.read().splitlines()
     return tasks
 

@@ -2,7 +2,7 @@
 
 import glob
 
-myfiles = glob.glob("app01\extra\*.txt")
+myfiles = glob.glob(r"..\files\*.txt")
 print(myfiles)
 
 print("Existing files:")

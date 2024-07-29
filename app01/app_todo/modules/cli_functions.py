@@ -1,4 +1,4 @@
-FILEPATH = r"app01/app_todo/tasks.txt"
+FILEPATH = r"tasks.txt"
 
 # writelines() doesn't add a new line -> so we added one
 # readlines() adds a new line automatically

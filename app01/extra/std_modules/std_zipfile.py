@@ -14,8 +14,8 @@ def create_archive(filepaths, destination_dir):
 
 # testing archive creation
 if __name__ == "__main__":
-    filepaths = ["app01/extra/todo/tasks.txt", "app01/extra/todo/todo v1.py"]
-    dd = "app01/extra/todo"
+    filepaths = ["../todo/tasks.txt", "../todo/todo v1.py"]
+    dd = "../todo"
     create_archive(filepaths, dd)
 
 def extract_archive(filepaths, destination_dir):
@@ -29,6 +29,6 @@ def extract_archive(filepaths, destination_dir):
 
 # testing archive extraction
 if __name__ == "__main__":
-    filepaths = ["todo_v1.zip", "todo_v1 - Copy.zip"]
-    dd = "app01/extra/test"
+    filepaths = ["../todo/compressed.zip"]
+    dd = "../todo/uncompressed"
     extract_archive(filepaths, dd)
